@@ -19,3 +19,12 @@ export const getRequests = async (request, response, next) => {
     next(error);
   }
 };
+
+export const acceptRequest = async (request, response, next) => {
+  try {
+    const user_a = await jwt.verify(request.cookies.access_token, process.env.JWT_SECRET).email;
+    return response.json(await friendService.acceptRequest(user_a, request.body.user_b));
+  } catch (error) {
+    next(error);
+  }
+};

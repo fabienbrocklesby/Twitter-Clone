@@ -21,6 +21,7 @@ export default (route) => {
   // Friend Routes
   route.post('/friends/send', authMiddleware, friendController.sendRequest);
   route.get('/friends/requests', authMiddleware, friendController.getRequests);
+  route.put('/friends/accept', authMiddleware, friendController.acceptRequest);
 
   // Error Routes
   route.use(errorController.notFound);
