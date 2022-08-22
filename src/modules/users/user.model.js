@@ -1,16 +1,15 @@
 import ShortUniqueId from 'short-unique-id';
 import db from '../../config/database.js';
 
-const uid = new ShortUniqueId({ length: 5 });
+const uid = new ShortUniqueId({ length: 6 });
 
 export const createUser = async (user) => (
-  await db.query('INSERT INTO users (user_id, username, email, password, verification_code, verified, description) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *', [
+  await db.query('INSERT INTO users (user_id, username, email, password, verification_code, description) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [
     uid(),
     user.username,
     user.email,
     user.password,
-    user.verification_code,
-    user.verified,
+    uid(),
     user.description,
   ])).rows[0];
 
@@ -22,4 +21,5 @@ export const updateUser = async (user) => (
     user.verification_code,
     user.verified,
     user.description,
+    user.user_id,
   ])).rows[0];
