@@ -16,7 +16,6 @@ export const sendRequest = async (user_a, user_b) => {
 
 export const getRequests = async (user_a) => {
   const me = await sharedModel.selectUserByEmail(user_a);
-  console.log(me.user_id);
 
   return friendModel.getRequests(me.user_id);
 };

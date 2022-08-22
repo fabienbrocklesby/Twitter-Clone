@@ -1,6 +1,7 @@
 import * as userController from './modules/users/user.controller.js';
 import authController from './modules/authentication/auth.controller.js';
 import * as friendController from './modules/friends/friend.controller.js';
+import * as tweetController from './modules/tweets/tweet.controller.js';
 
 import authMiddleware from './middleware/auth.middleware.js';
 import * as errorController from './modules/errors/error.controller.js';
@@ -22,6 +23,10 @@ export default (route) => {
   route.post('/friends/send', authMiddleware, friendController.sendRequest);
   route.get('/friends/requests', authMiddleware, friendController.getRequests);
   route.put('/friends/accept', authMiddleware, friendController.acceptRequest);
+
+  // Tweet Routes
+  route.get('/tweets', authMiddleware, tweetController.getTweets);
+  route.post('/tweets', authMiddleware, tweetController.postTweet);
 
   // Error Routes
   route.use(errorController.notFound);
