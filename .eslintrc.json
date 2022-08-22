@@ -11,7 +11,9 @@
         "sourceType": "module"
     },
     "rules": {
-       "import/extensions": "off",
-       "camelcase": "off"
+      "import/extensions": "off",
+      "camelcase": "off",
+      "consistent-return": "off",
+      "no-param-reassign": "off"
     }
 }
